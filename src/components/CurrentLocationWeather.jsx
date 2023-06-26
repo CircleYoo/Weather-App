@@ -32,7 +32,7 @@ export default function CurrentLocationWeather() {
   useEffect(() => {
     if (location.latitude && location.longitude) {
       axios
-        .get(`https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&units=metric&appid=${API_KEY}&lang=kr`)
+        .get(`https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&units=metric&appid=${API_KEY}`)
         .then((response) => {
           setWeather(response.data);
         })
@@ -49,11 +49,12 @@ export default function CurrentLocationWeather() {
         .get(`https://api.openweathermap.org/data/2.5/forecast?lat=${location.latitude}&lon=${location.longitude}&units=metric&appid=${API_KEY}&lang=kr`)
         .then((response) => {
           const forecastList = response.data.list;
-          const dailyData = forecastList.filter(item => item.dt_txt.includes("12:00:00"));
+          const dailyData = forecastList.filter(item => item.dt_txt.includes("15:00:00"));
           // const formattedData = dailyData.map(item => ({
           //   description: item.weather[0].description
           // }));
           setForecast(dailyData);
+          // console.log(forecastList)
         })
         .catch((error) => {
           console.log(error);
@@ -63,14 +64,15 @@ export default function CurrentLocationWeather() {
   
 
 
-  // 5 days / 3 hours 필요한 부분 출력하기
+  // 5 days / 3 hours 필요한 부분 출력하기 : 12시 기준만
   const renderForecastData = () => {
     if(forecast) {
       return forecast.map((data, idx) => {
         return (
           <div key = {idx}>
             <h2>{moment(data.dt_txt).calendar().substring(0, 3)}</h2>
-            <p>Temperature: {Math.round(data.main.temp)}°C</p>
+            <p>Temperature Max: {Math.round(data.main.temp_max)}°C</p>
+            <p>Temperature Min: {Math.round(data.main.temp_min)}°C</p>
             <p>Weather: {data.weather[0].description}</p>
           </div>
         )
@@ -80,6 +82,20 @@ export default function CurrentLocationWeather() {
     }
   }
 
+  // 5 days / 3 hours 필요한 부분 출력하기 : 시간별
+  const renderHour = () => {
+    if (forecast) {
+      return forecast.map((data, idx) => {
+        return (
+          <div key={idx}>
+            <h2>{data.dt_txt}</h2>
+          </div>
+        )
+      })
+    } else {
+      return <p>Loading...</p>;
+    }
+  }
   return (
     <div>
       {weather ? (
@@ -96,7 +112,7 @@ export default function CurrentLocationWeather() {
           <p>Wind: {weather.wind.speed} km/h</p>
           <div>
             <p>오후 1시 기준</p>
-            {renderForecastData()}
+            {renderHour()}
           </div>
         </div>
       ) : (
