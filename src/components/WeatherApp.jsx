@@ -5,6 +5,7 @@ import "../App";
 import NextWeather from "./NextWeather";
 import TodayDetail from "./TodayDetail";
 import Ootd from "./Ootd";
+import BgColor from "./BgColor";
 
 // 전체 큰 틀
 export default function WeatherApp() {
@@ -100,7 +101,7 @@ export default function WeatherApp() {
   };
 
   return (
-    <>
+    <div className='wrapper'>
       <form onSubmit={handleSubmit}>
         <label>
           <input
@@ -119,13 +120,16 @@ export default function WeatherApp() {
         <button onClick={handleTodayClick}>today</button>
         <button onClick={handleNextClick}>next 5 days</button>
       </section>
-      {showToday && weather && forecast? (
-        <TodayDetail weather={weather} forecast={forecast} />
+      {showToday && weather && forecast ? (
+        <>
+          <TodayDetail weather={weather} forecast={forecast} />
+          <Ootd temp={currentTemp} />
+        </>
       ) : (
           <NextWeather weather={weather} forecast={forecast}/>
       )}
-      <Ootd temp={ currentTemp } />
-    </>
+      <BgColor temp={currentTemp}></BgColor>
+    </div>
   );
 
 }

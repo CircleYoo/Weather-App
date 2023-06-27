@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Ootd({temp}) {
+export default function Ootd({ temp }) {
   let clothes = '';
 
   if (temp >= 28) {
@@ -26,10 +26,10 @@ export default function Ootd({temp}) {
   }
 
   return (
-    <div>
+    <section>
       <h4>ootd</h4>
       <p>{clothes}</p>
-    </div>
+    </section>
   )
 }
 
