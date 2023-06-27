@@ -12,7 +12,7 @@ export default function TodayDetail({ weather, forecast }) {
   const minTemp = Math.min(...todayForecast.map(item => item.main.temp_min));
 
   return (
-    <div>
+    <section>
       <div>
         <h3>max temperature <span>{Math.round(maxTemp)}°C</span></h3>
         <h3>min temperature <span>{Math.round(minTemp)}°C</span></h3>
@@ -21,6 +21,6 @@ export default function TodayDetail({ weather, forecast }) {
       <h3>sunset <span>{moment.unix(weather.sys.sunset).format('LT')}</span></h3>
       <h3>humidity <span>{weather.main.humidity}%</span></h3>
       <h3>wind <span>{weather.wind.speed}km/h</span></h3>
-    </div>
+    </section>
   );
 }

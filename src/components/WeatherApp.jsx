@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import moment from 'moment';
-import 'moment/locale/ko';
 import Weather from "./Weather";
 import "../App";
 import NextWeather from "./NextWeather";
 import TodayDetail from "./TodayDetail";
-
-moment.locale('ko');
+import Ootd from "./Ootd";
 
 // 전체 큰 틀
 export default function WeatherApp() {
@@ -15,7 +12,10 @@ export default function WeatherApp() {
   const [weather, setWeather] = useState(null);
   const [forecast, setForecast] = useState([]);
   const [city, setCity] = useState("");
-  const [showToday, setShowToday] = useState(true);
+
+  const [showToday, setShowToday] = useState(true); // 디테일 정보
+
+  const [currentTemp, setCurrentTemp] = useState(null); // 현재 온도
 
   const API_KEY = process.env.REACT_APP_API_KEY;
 
@@ -40,22 +40,21 @@ export default function WeatherApp() {
         .get(`https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&units=metric&appid=${API_KEY}`)
         .then((response) => {
           setWeather(response.data);
+          setCurrentTemp(response.data.main.temp)
         })
         .catch((error) => {
           console.log('location error', error);
         });
-    }
-  }, [location]);
-
+      }
+    }, [location]);
+    
   // 5 days / 3 hours 가져오기
   useEffect(() => {
     if (location.latitude && location.longitude) {
       axios
-        .get(`https://api.openweathermap.org/data/2.5/forecast?lat=${location.latitude}&lon=${location.longitude}&units=metric&appid=${API_KEY}&lang=kr`)
+        .get(`https://api.openweathermap.org/data/2.5/forecast?lat=${location.latitude}&lon=${location.longitude}&units=metric&appid=${API_KEY}`)
         .then((response) => {
           const forecastList = response.data.list;
-          // const dailyData = forecastList.filter(item => item.dt_txt.includes("15:00:00"));
-          // setForecast(dailyData);
           setForecast(forecastList);
         })
         .catch((error) => {
@@ -63,7 +62,6 @@ export default function WeatherApp() {
         });
     }
   }, [location]);
-
 
   const handleChange = (e) => {
     setCity(e.target.value);
@@ -79,18 +77,20 @@ export default function WeatherApp() {
         `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`
       )
       const forecastRes = await axios.get(
-        `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${API_KEY}&lang=kr`
+        `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${API_KEY}`
       );
 
       setWeather(weatherRes.data);
       setForecast(forecastRes.data.list)
+      setCurrentTemp(weatherRes.data.main.temp)
+      
       setCity("");
     } catch (error) {
       console.log(error)
     }
 
   };
-
+  
   const handleTodayClick = () => {
     setShowToday(true);
   };
@@ -100,7 +100,7 @@ export default function WeatherApp() {
   };
 
   return (
-    <div>
+    <>
       <form onSubmit={handleSubmit}>
         <label>
           <input
@@ -115,15 +115,17 @@ export default function WeatherApp() {
         </button>
       </form>
       <Weather weather={weather} forecast={forecast} />
-      <div>
+      <section>
         <button onClick={handleTodayClick}>today</button>
         <button onClick={handleNextClick}>next 5 days</button>
-      </div>
+      </section>
       {showToday && weather && forecast? (
         <TodayDetail weather={weather} forecast={forecast} />
       ) : (
-          <NextWeather weather={weather} forecast={forecast}  />
+          <NextWeather weather={weather} forecast={forecast}/>
       )}
-    </div>
+      <Ootd temp={ currentTemp } />
+    </>
   );
+
 }

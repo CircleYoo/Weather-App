@@ -7,10 +7,9 @@ moment.locale('ko');
 export default function Weather({ weather }) {
 
   return (
-    <div>
+    <section>
       {weather ? (
-        <div>
-          <section>
+        <>
             <p>it's <br />
               {weather.weather[0].description} <br />
               now</p>
@@ -21,15 +20,13 @@ export default function Weather({ weather }) {
               </p>
               <p>feels like <span>{Math.round(weather.main.feels_like)}°</span></p>
             </div>
-          </section>
-
-        </div>
+        </>
       ) : (
-        <div>
+        <>
           <p>Loading...</p>
-        </div>
+        </>
       )}
-    </div>
+    </section>
   );
 }
 
