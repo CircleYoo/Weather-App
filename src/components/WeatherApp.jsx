@@ -9,6 +9,7 @@ import TodayDetail from "./TodayDetail";
 
 moment.locale('ko');
 
+// 전체 큰 틀
 export default function WeatherApp() {
   const [location, setLocation] = useState({ latitude: null, longitude: null });
   const [weather, setWeather] = useState(null);
@@ -53,8 +54,9 @@ export default function WeatherApp() {
         .get(`https://api.openweathermap.org/data/2.5/forecast?lat=${location.latitude}&lon=${location.longitude}&units=metric&appid=${API_KEY}&lang=kr`)
         .then((response) => {
           const forecastList = response.data.list;
-          const dailyData = forecastList.filter(item => item.dt_txt.includes("15:00:00"));
-          setForecast(dailyData);
+          // const dailyData = forecastList.filter(item => item.dt_txt.includes("15:00:00"));
+          // setForecast(dailyData);
+          setForecast(forecastList);
         })
         .catch((error) => {
           console.log(error);
@@ -70,7 +72,7 @@ export default function WeatherApp() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}&lang=kr`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`;
     const response = await fetch(url);
     const data = await response.json();
 

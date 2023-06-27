@@ -3,8 +3,8 @@ import moment from 'moment';
 
 moment.locale('ko');
 
-export default function CurrentLocation({ weather, forecast }) {
-
+// 현재 기후, 온도, 위치, 체감온도
+export default function Weather({ weather }) {
 
   return (
     <div>

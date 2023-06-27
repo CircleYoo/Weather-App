@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 
+// 다음 5일간 날씨 정보
 export default function NextWeather({ weather, forecast }) {
 
   // 5 days / 3 hours 필요한 부분 출력하기 : 12시 기준만
