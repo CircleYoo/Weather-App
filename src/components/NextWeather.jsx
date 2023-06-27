@@ -12,8 +12,8 @@ export default function NextWeather({ weather, forecast }) {
     return forecast.map((data, idx) => (
       <div key={idx}>
         <h2>{moment(data.dt_txt).calendar().substring(0, 3)}</h2>
-        <p>Temperature Max: {Math.round(data.main.temp_max)}°C</p>
-        <p>Temperature Min: {Math.round(data.main.temp_min)}°C</p>
+        {/* <p>Temperature Max: {Math.round(data.main.temp_max)}°C</p> */}
+        {/* <p>Temperature Min: {Math.round(data.main.temp_min)}°C</p> */}
         <p>Weather: {data.weather[0].description}</p>
       </div>
     )

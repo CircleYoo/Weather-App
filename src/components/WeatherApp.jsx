@@ -72,14 +72,23 @@ export default function WeatherApp() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`;
-    const response = await fetch(url);
-    const data = await response.json();
-
     if (city === "") { return; }
 
-    setWeather(data);
-    setCity("");
+    try {
+      const weatherRes = await axios.get(
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`
+      )
+      const forecastRes = await axios.get(
+        `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${API_KEY}&lang=kr`
+      );
+
+      setWeather(weatherRes.data);
+      setForecast(forecastRes.data.list)
+      setCity("");
+    } catch (error) {
+      console.log(error)
+    }
+
   };
 
   const handleTodayClick = () => {

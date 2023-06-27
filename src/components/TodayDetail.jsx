@@ -3,13 +3,13 @@ import moment from 'moment';
 
 // 오늘날씨 상세정보
 export default function TodayDetail({ weather, forecast }) {
-  
-  // 오늘의 최고 / 최저 기온을 찾기
-  const maxTemp = Math.max(...forecast.map(item => item.main.temp_max));
-  const minTemp = Math.min(...forecast.map(item => item.main.temp_min));
-  console.log("maxTemp", maxTemp)
-  console.log("minTemp", minTemp)
+  // 오늘의 날짜를 가져오기
+  const today = moment().format('YYYY-MM-DD');
 
+  // 오늘의 최고 기온과 최저 기온을 계산
+  const todayForecast = forecast.filter(item => item.dt_txt.includes(today));
+  const maxTemp = Math.max(...todayForecast.map(item => item.main.temp_max));
+  const minTemp = Math.min(...todayForecast.map(item => item.main.temp_min));
 
   return (
     <div>
