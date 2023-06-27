@@ -1,12 +1,11 @@
 import './App.css';
-import SearchLocationWeather from './components/SearchLocationWeather';
-import CurrentLocationWeather from './components/CurrentLocationWeather';
+import WeatherApp from './components/WeatherApp';
 
 function App() {
   return (
     <>
-      {/* <SearchLocationWeather /> */}
-      <CurrentLocationWeather />
+      {/* <Location /> */}
+      <WeatherApp />
     </>
   );
 }
