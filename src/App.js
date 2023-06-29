@@ -1,10 +1,11 @@
 import './App.css';
-import WeatherApp from './components/WeatherApp';
+import 'reset-css';
+import 'normalize.css';
+import WeatherApp from './components//WeatherApp/WeatherApp';
 
 function App() {
   return (
     <>
-      {/* <Location /> */}
       <WeatherApp />
     </>
   );
