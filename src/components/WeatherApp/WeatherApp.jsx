@@ -121,6 +121,14 @@ export default function WeatherApp() {
     setTabState(newTabState);
   };
 
+  // 초기 활성 탭 설정
+  useEffect(() => {
+    const initialActive = document.getElementById("tabToday");
+    if (initialActive) {
+      initialActive.classList.add(styles.active);
+    }
+  }, []);
+
   return (
     <div className={styles.wrapper}>
       <form
@@ -142,21 +150,12 @@ export default function WeatherApp() {
         </label>
       </form>
       <TodayWeather weather={weather} forecast={forecast} />
-      <nav className={styles.button_detail}>
-        <button
-          className={styles.button_today}
-          id="tabToday"
-          onClick={handleTabClick}
-
-        >
-          today
+      <nav className={styles.tab}>
+        <button className={styles.today} id="tabToday" onClick={handleTabClick}>
+          <p>today</p>
         </button>
-        <button
-          className={styles.button_next}
-          id="tabNext"
-          onClick={handleTabClick}
-        >
-          next 5 days
+        <button className={styles.next} id="tabNext" onClick={handleTabClick}>
+          <p>next 5 days</p>
         </button>
       </nav>
       <section className={styles.detail}>
