@@ -131,47 +131,49 @@ export default function WeatherApp() {
 
   return (
     <div className={styles.wrapper}>
-      <form
-        onSubmit={handleSubmit}
-        action=""
-        method="GET"
-        className={styles.form}
-      >
-        <label className={styles.search}>
-          <input
-            type="text"
-            value={city}
-            placeholder="search for place"
-            onChange={handleChange}
-          />
-          <button type="submit">
-            <AiOutlineSearch />
+      <div className={styles.container}>
+        <form
+          onSubmit={handleSubmit}
+          action=""
+          method="GET"
+          className={styles.form}
+        >
+          <label className={styles.search}>
+            <input
+              type="text"
+              value={city}
+              placeholder="search for place"
+              onChange={handleChange}
+            />
+            <button type="submit">
+              <AiOutlineSearch />
+            </button>
+          </label>
+        </form>
+        <TodayWeather weather={weather} forecast={forecast} />
+        <nav className={styles.tab}>
+          <button className={styles.today} id="tabToday" onClick={handleTabClick}>
+            <p>today</p>
           </button>
-        </label>
-      </form>
-      <TodayWeather weather={weather} forecast={forecast} />
-      <nav className={styles.tab}>
-        <button className={styles.today} id="tabToday" onClick={handleTabClick}>
-          <p>today</p>
-        </button>
-        <button className={styles.next} id="tabNext" onClick={handleTabClick}>
-          <p>next 5 days</p>
-        </button>
-      </nav>
-      <section className={styles.detail}>
-        {tabState.tabToday && weather && forecast
-          ? (
-            <>
-              <TodayDetail weather={weather} forecast={forecast} />
-              <Ootd temp={currentTemp} />
-            </>
-          )
-          : (
-            <NextWeather weather={weather} forecast={forecast} />
-          )
-        }
+          <button className={styles.next} id="tabNext" onClick={handleTabClick}>
+            <p>next 5 days</p>
+          </button>
+        </nav>
+        <section className={styles.detail}>
+          {tabState.tabToday && weather && forecast
+            ? (
+              <>
+                <TodayDetail weather={weather} forecast={forecast} />
+                <Ootd temp={currentTemp} />
+              </>
+            )
+            : (
+              <NextWeather weather={weather} forecast={forecast} />
+            )
+          }
+        </section>
 
-      </section>
+      </div>
       <BgColor temp={currentTemp}></BgColor>
     </div>
   );

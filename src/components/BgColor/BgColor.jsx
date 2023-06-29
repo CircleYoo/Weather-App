@@ -6,19 +6,19 @@ export default function BgColor({ temp }) {
   let backgroundColor = "";
 
   if (temp >= 28) {
-    backgroundColor = "hot";
+    backgroundColor = styles.hot;
   } else if (temp >= 23 && temp < 28) {
-    backgroundColor = "warm";
+    backgroundColor = styles.warm;
   } else if (temp >= 17 && temp < 23) {
-    backgroundColor = "mild";
+    backgroundColor = styles.mild;
   } else if (temp >= 12 && temp < 17) {
-    backgroundColor = "cool";
+    backgroundColor = styles.cool;
   } else if (temp >= 5 && temp < 12) {
-    backgroundColor = "chilly";
+    backgroundColor = styles.chilly;
   } else if (temp >= 0 && temp < 5) {
-    backgroundColor = "cold";
+    backgroundColor = styles.cold;
   } else {
-    backgroundColor = "freezing";
+    backgroundColor = styles.freezing;
   }
 
   return (

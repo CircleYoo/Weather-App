@@ -1,3 +1,49 @@
-.weather {
-  
+@use '../../styles/global' as *;
+
+.section {
+  display: flex;
+  height: 22.25rem;
+  flex-direction: column;
+  padding: 1.125rem 1.5rem 1.5rem 1.5rem;
+
+  .weather {
+    color: $black;
+    font-size: 1.25rem;
+    font-weight: 300;
+    letter-spacing: -0.025rem;
+    line-height: 110%;
+    text-transform: capitalize;
+    flex-grow: 1;
+  }
+
+  .temp {
+    font-family: $fontAccent;
+    font-size: 9rem;
+    display: flex;
+
+    small {
+      font-size: 6rem;
+    }
+  }
+
+  .desc {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1.5rem;
+    
+    .location {
+      color: $black;
+      font-weight: 500;
+    }
+
+    .feels {
+      color: $gray600;
+      span {
+        color: $black;
+        font-weight: 500;
+      }
+    }
+  }
 }

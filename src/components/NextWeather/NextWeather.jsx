@@ -47,7 +47,7 @@ export default function NextWeather({ forecast }) {
       /* Object.entries() 메소드
        * 모든 프로퍼티와 값을 배열로 반환
        */
-      const dayOfWeek = moment(date).lang("en").format("ddd");
+      const dayOfWeek = moment(date).lang("en").format("dddd");
       const dateOfWeek = moment(date).format("D");
 
       // 최고 기온과 최저 기온 계산
@@ -61,12 +61,12 @@ export default function NextWeather({ forecast }) {
       const weatherIcon = `http://openweathermap.org/img/wn/${data[0].weather[0].icon}.png`;
 
       return (
-        <div key={idx} className={styles.Info_next}>
+        <div key={idx} className={styles.list}>
           <img src={weatherIcon} alt="Weather Icon" className={styles.icon} />
           <h2 className={styles.date}>{dayOfWeek}, {dateOfWeek}</h2>
           <div className={styles.temp}>
-            <p>Max Temp: {maxTemp}°C</p>
-            <p>Min Temp: {minTemp}°C</p>
+            <span>{maxTemp}°</span>
+            <span>{minTemp}°</span>
           </div>
         </div>
       );
@@ -74,7 +74,7 @@ export default function NextWeather({ forecast }) {
   }
 
   return (
-    <section>
+    <section className={styles.section}>
       {renderForecastData()}
     </section>
   );

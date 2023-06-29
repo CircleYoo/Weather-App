@@ -1,7 +1,7 @@
 import WeatherApp from './components//WeatherApp/WeatherApp';
-import './App.css';
 import 'reset-css';
 import 'normalize.css';
+import './App.css';
 import './styles/global.scss'
 
 function App() {

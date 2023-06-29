@@ -7,7 +7,7 @@ export default function Ootd({ temp }) {
   if (temp >= 28) {
     clothes = '민소매, 반팔, 크롭, 반바지, 치마';
   } else if (temp >= 23 && temp < 28) {
-    clothes = '반팔, 얇은셔츠, 반바지, 면바지';
+    clothes = '반팔, 얇은셔츠, 반바지, 면바지,';
   } else if (temp >= 20 && temp < 23) {
     clothes = '얇은 가디건, 긴팔티, 면바지, 청바지';
   } else if (temp >= 17 && temp < 20) {
@@ -27,7 +27,7 @@ export default function Ootd({ temp }) {
   }
 
   return (
-    <section>
+    <section className={styles.section}>
       <h4 className={styles.title}>ootd</h4>
       <p className={styles.text}>{clothes}</p>
     </section>

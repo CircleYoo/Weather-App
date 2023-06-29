@@ -14,7 +14,7 @@ export default function TodayDetail({ weather, forecast }) {
   const minTemp = Math.min(...todayForecast.map(item => item.main.temp_min));
 
   return (
-    <section className={styles.today_detail}>
+    <section className={styles.section}>
       <div className={styles.temp}>
         <h3>
           <AiOutlineArrowUp />
@@ -26,10 +26,22 @@ export default function TodayDetail({ weather, forecast }) {
         </h3>
       </div>
       <div className={styles.detail}>
-        <h3>sunrise <span>{moment.unix(weather.sys.sunrise).format('LT')}</span></h3>
-        <h3>sunset <span>{moment.unix(weather.sys.sunset).format('LT')}</span></h3>
-        <h3>humidity <span>{weather.main.humidity}%</span></h3>
-        <h3>wind <span>{weather.wind.speed}km/h</span></h3>
+        <p>
+          <span>sunrise</span>
+          <b>{moment.unix(weather.sys.sunrise).format('LT')}</b>
+        </p>
+        <p>
+          <span>humidity</span>
+          <b>{weather.main.humidity}%</b>
+        </p>
+        <p>
+          <span>sunset</span>
+          <b>{moment.unix(weather.sys.sunset).format('LT')}</b>
+        </p>
+        <p>
+          <span>wind</span>
+          <b>{weather.wind.speed}km/h</b>
+        </p>
       </div>
     </section>
   );

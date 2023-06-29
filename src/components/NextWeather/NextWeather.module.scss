@@ -1,0 +1,26 @@
+@use '../../styles/global' as *;
+
+.section {
+  padding: 2rem 1.5rem;
+  .list {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid $gray200;
+      padding-bottom: 0.875rem;
+    }
+    &:not(:first-child) {
+      padding-top: 0.875rem;
+    }
+
+    img {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+    .date {
+      flex-grow: 1;
+    }
+  }
+}

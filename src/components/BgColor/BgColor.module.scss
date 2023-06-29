@@ -1,3 +1,31 @@
+@use '../../styles/global' as *;
+
 .background {
   position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.hot {
+  background: radial-gradient(341.40% 101.15% at 50.00% -1.15%, #FD5A68 0%, #FC8884 18.08%, #F6F6F6 60.42%);
+}
+.warm {
+  background: radial-gradient(341.40% 101.15% at 50.00% -1.15%, #FD9869 0%, #FEC9C9 20.31%, #F6F6F6 60.42%);
+}
+.mild {
+  background: radial-gradient(341.40% 101.15% at 50.00% -1.15%, #FFBE17 0%, #FFDD86 0.01%, #FFF2C9 20.31%, #F6F6F6 60.42%);
+}
+.cool {
+  background: radial-gradient(341.40% 101.15% at 50.00% -1.15%, #A6D5C2 0%, #EAE5C9 20.31%, #F6F6F6 60.42%);
+}
+.chilly {
+  background: radial-gradient(341.40% 101.15% at 50.00% -1.15%, #79B9E5 0%, #D7EDFB 20.31%, #F6F6F6 60.42%);
+}
+.cold {
+  background: radial-gradient(341.40% 101.15% at 50.00% -1.15%, #2E6FBD 0%, #79C1F0 20.31%, #F6F6F6 60.42%);
+}
+.freezing {
+  background: radial-gradient(341.40% 101.15% at 50.00% -1.15%, #1A2B4D 0%, #4868AF 20.31%, #F6F6F6 60.42%);
 }
