@@ -57,6 +57,7 @@ export default function WeatherApp() {
         .then((response) => {
           const forecastList = response.data.list;
           setForecast(forecastList);
+          
         })
         .catch((error) => {
           console.log(error);
@@ -102,7 +103,7 @@ export default function WeatherApp() {
 
   return (
     <div className='wrapper'>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} action="" method="GET">
         <label>
           <input
             type="text"
@@ -110,10 +111,10 @@ export default function WeatherApp() {
             placeholder="search for place"
             onChange={handleChange}
           />
-        </label>
         <button type="submit">
           검색하기
         </button>
+        </label>
       </form>
       <Weather weather={weather} forecast={forecast} />
       <section>

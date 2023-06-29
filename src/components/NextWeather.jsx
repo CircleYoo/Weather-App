@@ -17,19 +17,25 @@ export default function NextWeather({ forecast }) {
     const filteredData = filterForecastData(groupedData);
 
     return Object.entries(filteredData).map(([date, data], idx) => {
+      /* Object.entries() 메소드
+       * 모든 프로퍼티와 값을 배열로 반환
+       */
       const dayOfWeek = moment(date).lang("en").format("ddd");
-      const dateOfWeek = moment(date).lang("en").format("YY");
-
+      const dateOfWeek = moment(date).format("D");
+      
       // 최고 기온과 최저 기온 계산
       const maxTemp = Math.round(Math.max(...data.map(item => item.main.temp_max)));
       const minTemp = Math.round(Math.min(...data.map(item => item.main.temp_min)));
 
-      // 날씨 정보 출력
-      const weatherInfo = data[0].weather[0].main;
+      // 날씨 정보 출력: 아이콘으로 대체
+      // const weatherInfo = data[0].weather[0].main;
+
+      // 날씨 아이콘
+      const weatherIcon = `http://openweathermap.org/img/wn/${data[0].weather[0].icon}.png`;
 
       return (
         <div key={idx}>
-          <p>Weather: {weatherInfo}</p>
+          <img src={weatherIcon} alt="Weather Icon" />
           <h2>{dayOfWeek}, {dateOfWeek}</h2>
           <div>
             <p>Max Temp: {maxTemp}°C</p>
@@ -61,6 +67,7 @@ export default function NextWeather({ forecast }) {
       if (date >= tomorrow && date <= fiveDaysLater) {
         filteredData[date] = data;
       }
+      // console.log([date, data], groupedData)
       return filteredData;
     }, {});
   }
