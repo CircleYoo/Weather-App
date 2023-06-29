@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { AiOutlineSearch } from "react-icons/ai";
 import axios from "axios";
+import styles from './WeatherApp.module.scss'
 
 import "../../App";
 import TodayWeather from "../TodayWeather/TodayWeather";
@@ -8,7 +10,6 @@ import NextWeather from "../NextWeather/NextWeather";
 import Ootd from "../Ootd/Ootd";
 import BgColor from "../BgColor/BgColor";
 
-import styles from './WeatherApp.module.scss'
 
 // 전체 큰 틀
 export default function WeatherApp() {
@@ -17,7 +18,11 @@ export default function WeatherApp() {
   const [forecast, setForecast] = useState([]);
   const [city, setCity] = useState("");
 
-  const [showToday, setShowToday] = useState(true); // 디테일 정보
+  // 디테일 정보
+  const [tabState, setTabState] = useState({
+    tabToday: true,
+    tabNext: false
+  });
 
   const [currentTemp, setCurrentTemp] = useState(null); // 현재 온도
 
@@ -49,9 +54,9 @@ export default function WeatherApp() {
         .catch((error) => {
           console.log('location error', error);
         });
-      }
-    }, [location]);
-    
+    }
+  }, [location]);
+
   // 5 days / 3 hours 가져오기
   useEffect(() => {
     if (location.latitude && location.longitude) {
@@ -60,7 +65,7 @@ export default function WeatherApp() {
         .then((response) => {
           const forecastList = response.data.list;
           setForecast(forecastList);
-          
+
         })
         .catch((error) => {
           console.log(error);
@@ -88,20 +93,23 @@ export default function WeatherApp() {
       setWeather(weatherRes.data);
       setForecast(forecastRes.data.list)
       setCurrentTemp(weatherRes.data.main.temp)
-      
+
       setCity("");
     } catch (error) {
       console.log(error)
     }
 
   };
-  
-  const handleTodayClick = () => {
-    setShowToday(true);
-  };
 
-  const handleNextClick = () => {
-    setShowToday(false);
+  const handleTabClick = (e) => {
+    const newTabState = { ...tabState };
+    const activeTab = e.currentTarget.id;
+    for (let key in newTabState) {
+      key === activeTab
+        ? (newTabState[key] = true)
+        : (newTabState[key] = false)
+    }
+    setTabState(newTabState);
   };
 
   return (
@@ -120,27 +128,33 @@ export default function WeatherApp() {
             onChange={handleChange}
           />
           <button type="submit">
-            검색하기
+            <AiOutlineSearch />
           </button>
         </label>
       </form>
       <TodayWeather weather={weather} forecast={forecast} />
-      <section className={styles.button_detail}>
-        <button className={styles.button_today} onClick={handleTodayClick}>
+      <nav className={styles.button_detail}>
+        <button className={styles.button_today} id="tabToday" onClick={handleTabClick}>
           today
         </button>
-        <button className={styles.button_next} onClick={handleNextClick}>
+        <button className={styles.button_next} id="tabNext" onClick={handleTabClick}>
           next 5 days
         </button>
+      </nav>
+      <section className={styles.detail}>
+        {tabState.tabToday && weather && forecast
+          ? (
+            <div>
+              <TodayDetail weather={weather} forecast={forecast} />
+              <Ootd temp={currentTemp} />
+            </div>
+          )
+          : (
+            <NextWeather weather={weather} forecast={forecast} />
+          )
+        }
+
       </section>
-      {showToday && weather && forecast ? (
-        <>
-          <TodayDetail weather={weather} forecast={forecast} />
-          <Ootd temp={currentTemp} />
-        </>
-      ) : (
-          <NextWeather weather={weather} forecast={forecast}/>
-      )}
       <BgColor temp={currentTemp}></BgColor>
     </div>
   );

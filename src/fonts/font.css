@@ -1,0 +1,40 @@
+/* Montserrat */
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 300;
+  src: url("Montserrat-Light.ttf") format("opentype");
+  unicode-range: U+0041-005A, U+0061-007A;
+}
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 400;
+  src: url("Montserrat-Regular.ttf") format("opentype");
+  unicode-range: U+0041-005A, U+0061-007A;
+}
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 500;
+  src: url("Montserrat-Medium.ttf") format("opentype");
+  unicode-range: U+0041-005A, U+0061-007A;
+}
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 600;
+  src: url("Montserrat-SemiBold.ttf") format("opentype");
+  unicode-range: U+0041-005A, U+0061-007A;
+}
+
+/* Pretendard */
+@font-face {
+  font-family: "Pretendard";
+  font-weight: 400;
+  src: url("Pretendard-Regular.otf") format("opentype");
+  unicode-range: U+AC00-D7A3;
+}
+
+/* Ydestreet */
+@font-face {
+  font-family: "Ydestreet";
+  font-weight: 700;
+  src: url("YdestreetB.ttf") format("opentype");
+}

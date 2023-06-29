@@ -13,8 +13,10 @@
     "normalize.css": "^8.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.10.1",
     "react-scripts": "5.0.1",
     "reset-css": "^5.0.1",
+    "sass": "^1.63.6",
     "styled-reset": "^4.4.7",
     "web-vitals": "^2.1.0"
   },

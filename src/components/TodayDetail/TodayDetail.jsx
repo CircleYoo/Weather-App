@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import styles from './TodayDetail.module.scss'
+import { AiOutlineArrowUp, AiOutlineArrowDown } from "react-icons/ai";
 
 // 오늘날씨 상세정보
 export default function TodayDetail({ weather, forecast }) {
@@ -15,8 +16,14 @@ export default function TodayDetail({ weather, forecast }) {
   return (
     <section className={styles.today_detail}>
       <div className={styles.temp}>
-        <h3>max temperature <span>{Math.round(maxTemp)}°C</span></h3>
-        <h3>min temperature <span>{Math.round(minTemp)}°C</span></h3>
+        <h3>
+          <AiOutlineArrowUp />
+          <span>{Math.round(maxTemp)}°</span>
+        </h3>
+        <h3>
+          <AiOutlineArrowDown />
+          <span>{Math.round(minTemp)}°</span>
+        </h3>
       </div>
       <div className={styles.detail}>
         <h3>sunrise <span>{moment.unix(weather.sys.sunrise).format('LT')}</span></h3>
