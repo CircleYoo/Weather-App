@@ -79,7 +79,6 @@ export default function WeatherApp() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (city === "") { return; }
 
     try {
@@ -104,6 +103,16 @@ export default function WeatherApp() {
   const handleTabClick = (e) => {
     const newTabState = { ...tabState };
     const activeTab = e.currentTarget.id;
+    const buttons = e.currentTarget.parentNode.children;
+    // 버튼 active 적용
+    for (let button of buttons) {
+      if (button.id === activeTab) {
+        button.classList.add(styles.active);
+      } else {
+        button.classList.remove(styles.active);
+      }
+    }
+    // 메뉴 출력
     for (let key in newTabState) {
       key === activeTab
         ? (newTabState[key] = true)
@@ -134,20 +143,29 @@ export default function WeatherApp() {
       </form>
       <TodayWeather weather={weather} forecast={forecast} />
       <nav className={styles.button_detail}>
-        <button className={styles.button_today} id="tabToday" onClick={handleTabClick}>
+        <button
+          className={styles.button_today}
+          id="tabToday"
+          onClick={handleTabClick}
+
+        >
           today
         </button>
-        <button className={styles.button_next} id="tabNext" onClick={handleTabClick}>
+        <button
+          className={styles.button_next}
+          id="tabNext"
+          onClick={handleTabClick}
+        >
           next 5 days
         </button>
       </nav>
       <section className={styles.detail}>
         {tabState.tabToday && weather && forecast
           ? (
-            <div>
+            <>
               <TodayDetail weather={weather} forecast={forecast} />
               <Ootd temp={currentTemp} />
-            </div>
+            </>
           )
           : (
             <NextWeather weather={weather} forecast={forecast} />

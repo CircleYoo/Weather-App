@@ -49,11 +49,11 @@
     button {
       color: $gray200;
       border-top: 1px solid $gray200;
+      transition: color 0.15s ease-in-out;
       
-      &:active {
+      &.active {
         color: $black;
         border-top: 1px solid $black;
-
       }
     }
   }
