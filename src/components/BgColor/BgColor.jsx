@@ -3,7 +3,7 @@ import styles from './BgColor.module.scss'
 
 export default function BgColor({ temp }) {
 
-  let backgroundColor = "";
+  let backgroundColor = styles.default;
 
   if (temp >= 28) {
     backgroundColor = styles.hot;
@@ -15,10 +15,12 @@ export default function BgColor({ temp }) {
     backgroundColor = styles.cool;
   } else if (temp >= 5 && temp < 12) {
     backgroundColor = styles.chilly;
-  } else if (temp >= 0 && temp < 5) {
+  } else if (temp > 0 && temp < 5) {
     backgroundColor = styles.cold;
-  } else {
+  } else if (temp < 0) {
     backgroundColor = styles.freezing;
+  } else {
+    backgroundColor = styles.default;
   }
 
   return (

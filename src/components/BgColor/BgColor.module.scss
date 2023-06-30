@@ -8,6 +8,9 @@
   bottom: 0;
 }
 
+.default {
+  background-color: $white;
+}
 .hot {
   background: radial-gradient(341.40% 101.15% at 50.00% -1.15%, #FD5A68 0%, #FC8884 18.08%, #F6F6F6 60.42%);
 }
