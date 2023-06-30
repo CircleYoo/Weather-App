@@ -47,7 +47,7 @@ export default function NextWeather({ forecast }) {
       /* Object.entries() 메소드
        * 모든 프로퍼티와 값을 배열로 반환
        */
-      const dayOfWeek = moment(date).lang("en").format("dddd");
+      const dayOfWeek = moment(date).format("dddd");
       const dateOfWeek = moment(date).format("D");
 
       // 최고 기온과 최저 기온 계산
