@@ -1,5 +1,5 @@
-# Weather Now
-**배포 주소** : <br />
+# Weather Now (제작 중)
+**배포 주소** : https://calm-sunflower-38df48.netlify.app/ <br />
 
 ### 💼 작업기간
 > 1인 제작 <br/>
