@@ -2,17 +2,22 @@
 
 .section {
   padding: 2rem 1.5rem;
+  display: grid;
+  grid-template-rows: repeat(5, 1fr);
+  gap: 1vh;
+
   .list {
     display: flex;
     flex-direction: row;
     align-items: center;
+    gap: 0.5rem;
 
     &:not(:last-child) {
       border-bottom: 1px solid $gray200;
-      padding-bottom: 0.875rem;
+      padding-bottom: 1vh;
     }
     &:not(:first-child) {
-      padding-top: 0.875rem;
+      // padding-top: 0.875rem;
     }
 
     img {
@@ -20,7 +25,20 @@
       height: 1.5rem;
     }
     .date {
+      color: $black;
       flex-grow: 1;
+      font-weight: 500;
+    }
+
+    .temp {
+      color: $black;
+      font-weight: 500;
+      span{
+        &:last-child {
+          margin-left: 8px;
+          color: $gray600;
+        }
+      }
     }
   }
 }
