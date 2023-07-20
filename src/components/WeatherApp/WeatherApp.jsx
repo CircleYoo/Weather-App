@@ -26,8 +26,8 @@ export default function WeatherApp() {
 
   const [currentTemp, setCurrentTemp] = useState(null); // 현재 온도
 
-  // const API_KEY = process.env.REACT_APP_API_KEY;
-  const API_KEY = '85949a76c886a99b91355b504b7e952e';
+  const API_KEY = process.env.REACT_APP_API_KEY;
+  // const API_KEY = '85949a76c886a99b91355b504b7e952e';
 
   // 현지 위치 가져오기
   useEffect(() => {
