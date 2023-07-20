@@ -1,5 +1,5 @@
 # Weather Now
-**배포 주소** : https://calm-sunflower-38df48.netlify.app/ <br />
+**배포 주소** : https://weather-now-mu.vercel.app/ <br />
 
 ![poster](https://github.com/CircleYoo/Weather-Now/blob/master/src/assets/WeatherNow-2.png) 
 
