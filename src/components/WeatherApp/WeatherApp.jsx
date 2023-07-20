@@ -56,6 +56,7 @@ export default function WeatherApp() {
           console.log('location error', error);
         });
     }
+    // eslint-disable-next-line
   }, [location]);
 
   // 5 days / 3 hours 가져오기
@@ -72,6 +73,7 @@ export default function WeatherApp() {
           console.log(error);
         });
     }
+    // eslint-disable-next-line
   }, [location]);
 
   const handleChange = (e) => {
