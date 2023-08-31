@@ -1,7 +1,7 @@
 # Weather Now
 **배포 주소** : https://weather-now-mu.vercel.app/ <br />
 
-![poster](https://github.com/CircleYoo/Weather-Now/blob/master/src/assets/WeatherNow-2.png) 
+![poster](https://github.com/CircleYoo/Weather-Now/blob/master/src/assets/weather-now.jpg) 
 
 ### 💼 작업기간
 > 1인 제작 <br/>
